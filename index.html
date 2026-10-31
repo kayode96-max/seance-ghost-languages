@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Séance — speak with the ghosts of dead programming languages</title>
+<meta name="description" content="Hold a séance with the ghost of COBOL, FORTRAN, ALGOL, Pascal, Smalltalk or BASIC. An open-weight LLM runs entirely in your browser via WebLLM.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="candles" aria-hidden="true"><span></span><span></span><span></span></div>
+<header>
+  <h1>S<span class="accent">é</span>ance</h1>
+  <p class="sub">Speak with the ghosts of programming languages past. An open-weight model, running entirely in your browser. No keys, no server, nothing leaves this room.</p>
+</header>
+
+<main>
+  <section id="altar" class="panel">
+    <h2>Choose a spirit</h2>
+    <div id="ghosts" class="ghosts" role="radiogroup" aria-label="Choose a ghost"></div>
+    <div class="controls">
+      <label>Medium (model)
+        <select id="model">
+          <option value="Qwen2.5-0.5B-Instruct-q4f16_1-MLC">Qwen2.5 0.5B Instruct — smallest, fastest</option>
+          <option value="Llama-3.2-1B-Instruct-q4f16_1-MLC">Llama 3.2 1B Instruct — larger, richer voice</option>
+          <option value="Qwen2.5-1.5B-Instruct-q4f16_1-MLC">Qwen2.5 1.5B Instruct — largest, best at code</option>
+        </select>
+      </label>
+      <button id="summon" class="btn">🕯️ Summon</button>
+    </div>
+    <div id="progress-wrap" class="progress-wrap" hidden>
+      <div class="progress"><div id="bar"></div></div>
+      <p id="progress-text" class="muted">Summoning…</p>
+    </div>
+    <div id="nogpu" class="warning" hidden>
+      <strong>The veil is too thick here.</strong>
+      <p>Your browser doesn't expose <code>WebGPU</code>, which the spirits need to cross over. Try a recent Chrome or Edge on desktop (or Safari 26+ / Firefox with WebGPU enabled). Everything runs locally, so there's no server I can fall back to — that's the point.</p>
+    </div>
+  </section>
+
+  <section id="table" class="panel">
+    <div class="tabs" role="tablist">
+      <button class="tab active" data-mode="speak" role="tab" aria-selected="true">Speak</button>
+      <button class="tab" data-mode="possess" role="tab" aria-selected="false">Possess code</button>
+    </div>
+    <div id="board" class="board" aria-live="polite">
+      <p class="placeholder">The board is silent. Choose a spirit and summon it.</p>
+    </div>
+    <form id="ask">
+      <textarea id="input" rows="3" placeholder="Ask the spirit something…" disabled></textarea>
+      <div class="row">
+        <span id="hint" class="muted">Enter to send · Shift+Enter for newline</span>
+        <button id="stop" type="button" class="btn ghost-btn" hidden>Banish (stop)</button>
+        <button id="send" class="btn" disabled>Ask</button>
+      </div>
+    </form>
+  </section>
+</main>
+
+<footer>
+  <p>Built with <a href="https://github.com/mlc-ai/web-llm">WebLLM</a> (Apache-2.0) and open-weight models. MIT licensed. The ghosts are role-play by a small model — they will misremember things, as ghosts do.</p>
+</footer>
+<script type="module" src="app.js"></script>
+</body>
+</html>
